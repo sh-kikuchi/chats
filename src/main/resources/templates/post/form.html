@@ -1,0 +1,55 @@
+<!--This is the completed HTML file -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+<title th:text="${title}">Insert title here</title>
+</head>
+<body>
+	<section class="hero is-small is-primary">
+	  <div class="hero-body">
+	    <p class="title"  th:text="${title}">
+	      Small hero
+	    </p>
+	  </div>
+	</section>
+	<nav class="breadcrumb m-2" aria-label="breadcrumbs">
+		  <ul>
+		    <li><a href="/thread/">Thread_List</a></li>
+		  </ul>
+	</nav>
+	<section class="container mt-4">
+		  <div class="notification">
+				<h2 th:text="${complete}"></h2>
+				<form method="post" action="#" th:action="@{/post/confirm}" th:object="${postForm}">
+					<!--th:object="${threadForm}はバリデーション時のメッセージ表示や入力値を戻すことなどをする-->
+					<div>
+						<label for="_id">id:</label>
+					    <input id="_id" name="id" class="input"　th:field="*{id}">
+					</div>
+					<div>
+						<label for="thread_id">thread_id:</label>
+					    <input id="thread_id" name="thread_id"  class="input"　th:field="*{thread_id}">
+					</div>
+					<div>
+						<label for="user_id">Use_id:</label>
+						<input id="user_id" name="user_id" class="input"　th:field="*{user_id}">
+					</div>
+					<div>
+					    <label for="title">Title:</label>
+					    <input id="title" name="title"  class="input"　th:field="*{title}">
+					    <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>	
+					</div>
+					<div>
+						 <label for="explain">Description:</label>
+					     <textarea id="description" name="description" class="textarea" th:field="*{description}" rows="3" cols="40"></textarea><br>
+					     <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+					</div>
+					<input type="submit" class="button" value="Confirm">
+				</form>
+		  </div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"> <!--Thymeleafの設定-->
+	<head>
+		<meta charset="UTF-8">
+		<title　th:text="${title}">The manually entered title will be overwritten.</title>　 <!--modelの値を反映(コントローラ）　-->
+	</head>
+	<body>
+		<h1 th:text="${title}">title</h1>
+		<p th:text="${name}">This is a sample Page</p>
+		
+	</body>
+
+	
+</html>

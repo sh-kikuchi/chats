@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">post title here</title>
+</head>
+<body>
+<h1 th:text="${title}">仮のタイトル</h1>
+<p>入力内容をご確認ください</p>
+<div th:object="${postForm}">
+	<p th:text="*{thread_id}"></p>
+	<p th:text="*{user_id}"></p>
+	<p th:text="*{title}"></p>
+	<p th:text="*{description}"></p>
+	<form method="post" action="#" th:action="@{/post/form}">
+		<input type="hidden" name="id" th:value="*{id}">
+		<input type="hidden" name="thread_id" th:value="*{thread_id}">
+		<input type="hidden" name="user_id" th:value="*{user_id}">
+		<input type="hidden" name="title" th:value="*{title}">
+		<input type="hidden" name="description" th:value="*{description}">
+		<input type="submit" value="Go Back">
+	</form>
+	<form method="post" action="#" th:action="@{/post/complete}">
+		<input type="hidden" name="id" th:value="*{id}">
+		<input type="hidden" name="thread_id" th:value="*{thread_id}">
+		<input type="hidden" name="user_id" th:value="*{user_id}">
+		<input type="hidden" name="title" th:value="*{title}">
+		<input type="hidden" name="description" th:value="*{description}">
+		<input type="submit" value="Complete">
+	</form>
+</div>
+</body>
+</html>

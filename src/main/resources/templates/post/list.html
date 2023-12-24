@@ -1,0 +1,51 @@
+<!--This is the completed HTML file -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">Insert title here</title>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <p class="title"  th:text="${title}">
+      Primary hero
+    </p>
+    <p class="subtitle">
+      Primary subtitle
+    </p>
+  </div>
+</section>
+<section>
+	<table class="table mt-4 ml-4">
+		<tr>
+			<th>id</th>
+			<th>thread__id</th>
+			<th>user_id</th>
+			<th>description</th>
+			<th>created_at</th>
+			<th>updated_at</th>
+			<th>Actions</th>
+		</tr>
+		<tr th:each="post: ${postList}">
+			<td th:text="${post.id}"></td>
+		    <td th:text="${post.thread_id}"></td>
+			<td th:text="${post.user_id}"></td>
+			<td th:text="${post.description}"></td>
+			<td th:text="${post.created_at}"></td>
+			<td th:text="${post.updated_at}"></td>
+			<td>
+				<div class="columns">
+					<a class=" column" th:href="@{/post/form/{id}(id=${post.id})}"> &#9999;</a>
+					<form method="POST" th:action="@{/post/delete}" class="column">
+						<input type="hidden" name="thread_id" th:value="${post.thread_id}">
+						<input type="hidden" name="id" th:value="${post.id}">
+						<button class="delete"></button>
+					</form>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
